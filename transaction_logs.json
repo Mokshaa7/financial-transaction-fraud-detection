@@ -1,0 +1,92 @@
+[
+    {
+        "timestamp": "2026-08-21T03:42:56.093444+00:00",
+        "transaction": {
+            "newbalanceOrig": 5000.0,
+            "nameDest": "C987654",
+            "nameOrig": "C123456",
+            "type": "TRANSFER",
+            "amount": 5000.0,
+            "oldbalanceDest": 2000.0,
+            "oldbalanceOrg": 10000.0,
+            "newbalanceDest": 7000.0
+        },
+        "fraud": false,
+        "fraud_probability": 1.3776551895716693e-05
+    },
+    {
+        "timestamp": "2026-08-21T03:50:12.824177+00:00",
+        "transaction": {
+            "newbalanceOrig": 0.0,
+            "nameDest": "C553264065",
+            "nameOrig": "C1305486145",
+            "type": "TRANSFER",
+            "amount": 181.0,
+            "oldbalanceDest": 0.0,
+            "oldbalanceOrg": 181.0,
+            "newbalanceDest": 0.0
+        },
+        "fraud": true,
+        "fraud_probability": 0.9999920129776001
+    },
+    {
+        "timestamp": "2026-08-21T07:29:51.439394+00:00",
+        "transaction": {
+            "type": "TRANSFER",
+            "amount": 5000.0,
+            "nameOrig": "C1234",
+            "oldbalanceOrg": 10000.0,
+            "newbalanceOrig": 5000.0,
+            "nameDest": "D5678",
+            "oldbalanceDest": 2000.0,
+            "newbalanceDest": 7000.0
+        },
+        "fraud": false,
+        "fraud_probability": 1.3776551895716693e-05
+    },
+    {
+        "timestamp": "2026-08-21T08:58:14.019725+00:00",
+        "transaction": {
+            "type": "TRANSFER",
+            "amount": 5000.0,
+            "nameOrig": "C1234",
+            "oldbalanceOrg": 10000.0,
+            "newbalanceOrig": 5000.0,
+            "nameDest": "D5678",
+            "oldbalanceDest": 2000.0,
+            "newbalanceDest": 7000.0
+        },
+        "fraud": false,
+        "fraud_probability": 1.3776551895716693e-05
+    },
+    {
+        "timestamp": "2026-08-21T08:59:38.904785+00:00",
+        "transaction": {
+            "type": "TRANSFER",
+            "amount": 5.0,
+            "nameOrig": "C1234",
+            "oldbalanceOrg": 10.0,
+            "newbalanceOrig": 5.0,
+            "nameDest": "D5678",
+            "oldbalanceDest": 5.0,
+            "newbalanceDest": 10.0
+        },
+        "fraud": true,
+        "fraud_probability": 0.9999818801879883
+    },
+    {
+        "timestamp": "2026-08-21T09:02:32.629989+00:00",
+        "transaction": {
+            "type": "TRANSFER",
+            "amount": 5.0,
+            "nameOrig": "N1234",
+            "oldbalanceOrg": 10.0,
+            "newbalanceOrig": 5.0,
+            "nameDest": "O5678",
+            "oldbalanceDest": 5.0,
+            "newbalanceDest": 10.0
+        },
+        "fraud": true,
+        "fraud_probability": 0.9999818801879883
+    }
+]

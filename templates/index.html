@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FraudGuard | Financial Fraud Detection</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- ================================================= -->
+        <!-- HEADER -->
+        <!-- ================================================= -->
+
+        <header class="header">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    🛡
+                </div>
+
+                <div>
+                    <h1>FraudGuard</h1>
+
+                    <p>
+                        Financial Transaction Risk Detection
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                <span>
+                    System Online
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <main class="main-content">
+
+
+            <!-- ============================================= -->
+            <!-- TRANSACTION FORM -->
+            <!-- ============================================= -->
+
+            <section class="card transaction-card">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            TRANSACTION ANALYSIS
+                        </span>
+
+                        <h2>
+                            Analyze a Transaction
+                        </h2>
+
+                        <p>
+                            Enter transaction details to assess
+                            fraud risk using the XGBoost model.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form id="transaction-form">
+
+
+                    <!-- Transaction type + amount -->
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="type">
+                                Transaction Type
+                            </label>
+
+                            <select
+                                id="type"
+                                name="type"
+                                required
+                            >
+
+                                <option value="TRANSFER">
+                                    Transfer
+                                </option>
+
+                                <option value="CASH_OUT">
+                                    Cash Out
+                                </option>
+
+                                <option value="CASH_IN">
+                                    Cash In
+                                </option>
+
+                                <option value="PAYMENT">
+                                    Payment
+                                </option>
+
+                                <option value="DEBIT">
+                                    Debit
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="amount">
+                                Transaction Amount
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-prefix">
+                                    ₹
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="amount"
+                                    name="amount"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="5000"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Accounts -->
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="nameOrig">
+                                Origin Account
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nameOrig"
+                                name="nameOrig"
+                                placeholder="C123456"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="nameDest">
+                                Destination Account
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nameDest"
+                                name="nameDest"
+                                placeholder="C987654"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Origin balance -->
+
+                    <div class="balance-section">
+
+                        <div class="balance-title">
+                            Origin Account Balance
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="oldbalanceOrg">
+                                    Balance Before
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <span class="input-prefix">
+                                        ₹
+                                    </span>
+
+                                    <input
+                                        type="number"
+                                        id="oldbalanceOrg"
+                                        name="oldbalanceOrg"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="10000"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="newbalanceOrig">
+                                    Balance After
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <span class="input-prefix">
+                                        ₹
+                                    </span>
+
+                                    <input
+                                        type="number"
+                                        id="newbalanceOrig"
+                                        name="newbalanceOrig"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="5000"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Destination balance -->
+
+                    <div class="balance-section">
+
+                        <div class="balance-title">
+                            Destination Account Balance
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="oldbalanceDest">
+                                    Balance Before
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <span class="input-prefix">
+                                        ₹
+                                    </span>
+
+                                    <input
+                                        type="number"
+                                        id="oldbalanceDest"
+                                        name="oldbalanceDest"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="2000"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="newbalanceDest">
+                                    Balance After
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <span class="input-prefix">
+                                        ₹
+                                    </span>
+
+                                    <input
+                                        type="number"
+                                        id="newbalanceDest"
+                                        name="newbalanceDest"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="7000"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Submit -->
+
+                    <button
+                        type="submit"
+                        id="analyze-button"
+                        class="analyze-button"
+                    >
+
+                        <span id="button-text">
+                            Analyze Transaction
+                        </span>
+
+                        <span
+                            id="button-loader"
+                            class="loader hidden"
+                        ></span>
+
+                    </button>
+
+
+                    <div
+                        id="error-message"
+                        class="error-message hidden"
+                    ></div>
+
+                </form>
+
+            </section>
+
+
+            <!-- ============================================= -->
+            <!-- RESULT -->
+            <!-- ============================================= -->
+
+            <section
+                id="result-card"
+                class="card result-card hidden"
+            >
+
+                <div class="section-header">
+
+                    <span class="eyebrow">
+                        ANALYSIS RESULT
+                    </span>
+
+                    <h2>
+                        Risk Assessment
+                    </h2>
+
+                </div>
+
+
+                <div
+                    id="result-icon"
+                    class="result-icon"
+                >
+                    ✓
+                </div>
+
+
+                <div
+                    id="result-status"
+                    class="result-status"
+                >
+                    NOT FRAUD
+                </div>
+
+
+                <p
+                    id="result-description"
+                    class="result-description"
+                >
+                    This transaction appears to have a low
+                    probability of fraudulent activity.
+                </p>
+
+
+                <!-- Risk meter -->
+
+                <div class="risk-section">
+
+                    <div class="risk-label">
+
+                        <span>
+                            Fraud Probability
+                        </span>
+
+                        <strong id="risk-percentage">
+                            0.00%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="risk-bar">
+
+                        <div
+                            id="risk-fill"
+                            class="risk-fill"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="result-badge"
+                    class="result-badge"
+                >
+                    Low Risk
+                </div>
+
+            </section>
+
+
+            <!-- ============================================= -->
+            <!-- HISTORY -->
+            <!-- ============================================= -->
+
+            <section class="card history-card">
+
+                <div class="section-header history-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            TRANSACTION HISTORY
+                        </span>
+
+                        <h2>
+                            Recent Analyses
+                        </h2>
+
+                    </div>
+
+                    <button
+                        id="refresh-history"
+                        class="refresh-button"
+                    >
+                        ↻ Refresh
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="history-container"
+                    class="history-container"
+                >
+
+                    <div class="empty-history">
+                        Loading transaction history...
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- ================================================= -->
+        <!-- FOOTER -->
+        <!-- ================================================= -->
+
+        <footer class="footer">
+
+            <p>
+                FraudGuard • XGBoost Financial Fraud Detection
+            </p>
+
+            <p>
+                For demonstration and educational purposes.
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='js/app.js') }}"
+    ></script>
+
+</body>
+
+</html>
